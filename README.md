@@ -1,1 +1,1 @@
-# think-in-react-way
+# react-way

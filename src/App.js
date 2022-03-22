@@ -11,26 +11,28 @@ import User from "./components/User";
 import CounterB from "./components/RenderProps/CounterB";
 import Section from "./components/contexts/Section";
 import ThemeContext from "./components/contexts/ThemeContext";
-import TodoClass from "./components/TodoClass"; 
-import Todo from "./components/Todo"
+import TodoClass from "./components/TodoClass";
+import Todo from "./components/Todo";
 import LikeDislike from "./components/LikeDislike.js";
+import EffectClass from "./components/useEffects/EffectClass";
+import Effect from "./components/useEffects/Effect";
 
 function App() {
   const [count, setCount] = useState(0);
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState("dark");
+  const [showEffect, setShowEffect] = useState(true);
 
   useEffect(() => {
     document.title = `You clicked ${count} times`;
   });
 
   const switchTheme = () => {
-    if(theme === 'dark'){
-      setTheme('light')
+    if (theme === "dark") {
+      setTheme("light");
+    } else {
+      setTheme("dark");
     }
-    else{
-      setTheme('dark')
-    }
-  }
+  };
 
   return (
     <div className="App">
@@ -41,7 +43,7 @@ function App() {
       <Counter />
       <ClickCounterB />
       <HoverCounterB />  */}
-      <User name={(isLoggedIn) => isLoggedIn ? "Nirob" : "Guest"}/>
+      <User name={(isLoggedIn) => (isLoggedIn ? "Nirob" : "Guest")} />
       {/* <CounterB render={(count, incrementCount)=> <ClickCounterB count={count} incrementCount={incrementCount}/>}/>
       <CounterB render={(count, incrementCount)=> <HoverCounterB count={count} incrementCount={incrementCount}/>}/>
       */}
@@ -57,7 +59,7 @@ function App() {
       {15}
 
       {/* <Section theme={theme}/> */}
-{/* 
+      {/* 
       <ThemeContext.Provider value={{theme, switchTheme: switchTheme}}>
         <Section />
       </ThemeContext.Provider>
@@ -82,7 +84,18 @@ function App() {
       </button>
       <Example /> */}
 
+      {showEffect && <EffectClass />}
 
+      <button
+        onClick={() => {
+          setShowEffect(!showEffect);
+        }}
+      >
+        {" "}
+        {showEffect ? "Hide" : "Show"}
+      </button>
+
+      {showEffect && <Effect />}
     </div>
   );
 }

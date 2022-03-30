@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import "./App.css";
 import Example from "./components/Example";
 import ClickCounter from "./components/HOC/ClickCounter";
@@ -16,15 +16,19 @@ import Todo from "./components/Todo";
 import LikeDislike from "./components/LikeDislike.js";
 import EffectClass from "./components/useEffects/EffectClass";
 import Effect from "./components/useEffects/Effect";
+import Title from "./components/useMemoUseCallback/Title";
+import ShowCount from "./components/useMemoUseCallback/ShowCount";
+import ButtonM from "./components/useMemoUseCallback/ButtonM";
+import { increment } from "./components/CounterSlice";
+import Form from "./components/useRef/Form";
+import ComponentApp from "./components/useEffects/UserApp";
 
 function App() {
   const [count, setCount] = useState(0);
   const [theme, setTheme] = useState("dark");
   const [showEffect, setShowEffect] = useState(true);
-
-  useEffect(() => {
-    document.title = `You clicked ${count} times`;
-  });
+  const [count1, setCount1] = useState(0);
+  const [count2, setCount2] = useState(0);
 
   const switchTheme = () => {
     if (theme === "dark") {
@@ -33,6 +37,23 @@ function App() {
       setTheme("dark");
     }
   };
+
+  const incrementByOne = useCallback(() => {
+    setCount1((prevCount) => prevCount + 1);
+  }, []);
+
+  const incrementByFive = useCallback(() => {
+    setCount2((prevCount) => prevCount + 5);
+  }, []);
+
+  const returnFive = useMemo(() => {
+    console.log("returnFive");
+    return 10;
+  }, []);
+
+  useEffect(() => {
+    document.title = `You clicked ${count} times`;
+  });
 
   return (
     <div className="App">
@@ -83,7 +104,7 @@ function App() {
         Click me useEffect
       </button>
       <Example /> */}
-
+      {/* 
       {showEffect && <EffectClass />}
 
       <button
@@ -95,9 +116,24 @@ function App() {
         {showEffect ? "Hide" : "Show"}
       </button>
 
-      {showEffect && <Effect />}
+      {showEffect && <Effect />} */}
+
+      <Title />
+      {returnFive}
+      <ShowCount count={count1} title="Counter 1" />
+      <ButtonM number={1} handleOnClick={incrementByOne}></ButtonM>
+
+      <ShowCount count={count2} title="Counter 2" />
+      <ButtonM number={2} handleOnClick={incrementByFive}></ButtonM>
+
+      <Form />
+
+      <ComponentApp />
     </div>
   );
 }
 
 export default App;
+
+// useCallback remembers the function
+// useMemo remembers value returned by the function

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
-import "./App.css";
+// import "./App.css";
 import Example from "./components/Example";
 import ClickCounter from "./components/HOC/ClickCounter";
 import HoverCounter from "./components/HOC/HoverCounter";

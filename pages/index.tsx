@@ -7,6 +7,7 @@ import store from "../src/app/store";
 import { Provider } from "react-redux";
 import useState from "react";
 import type { NextPage } from "next";
+import IndexPage from "../lib/search";
 
 // const states = [];
 // let currentIndex = -1;
@@ -71,7 +72,12 @@ import type { NextPage } from "next";
 
 // renderForHook();
 const Home: NextPage = () => {
-  return <App />;
+  return (
+    <>
+      <App />
+      <IndexPage />
+    </>
+  );
 };
 // ReactDOM.render(
 //   <React.StrictMode>

@@ -22,6 +22,7 @@ import ButtonM from "./components/useMemoUseCallback/ButtonM";
 import { increment } from "./components/CounterSlice";
 import Form from "./components/useRef/Form";
 import ComponentApp from "./components/useEffects/UserApp";
+import JotaiAtom from "./components/Jotai/JotaiCounter";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -129,6 +130,10 @@ function App() {
       <Form />
 
       <ComponentApp />
+
+      <br />
+
+      <JotaiAtom />
     </div>
   );
 }

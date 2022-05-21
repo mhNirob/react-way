@@ -1,11 +1,14 @@
 import { atom, useAtom } from "jotai";
-import { dotsAtom, SVGDots } from "./SVGDots";
+import { dotsAtom, addDotAtom, commitDotsAtom, SVGDots } from "./SVGDots";
+import { SVGShapes } from "./SVGShapes";
+import { Point } from "./types";
 
-type Point = [number, number];
+//type Point = [number, number];
 //const dotsAtom = atom<Point[]>([]);
 
 const handleMouseMoveAtom = atom(null, (get, set, update: Point) => {
-  set(dotsAtom, (prev) => [...prev, update]);
+  //set(dotsAtom, (prev) => [...prev, update]);
+  set(addDotAtom, update);
 });
 
 const mouseDownAtom = atom<boolean>(false);
@@ -17,6 +20,7 @@ const handleMouseDownAtom = atom(null, (get, set, update: boolean) => {
 
 const handleMouseUpAtom = atom(null, (get, set, update: boolean) => {
   set(mouseDownAtom, update);
+  set(commitDotsAtom, null);
 });
 
 export const SVGRoot = () => {
@@ -43,7 +47,10 @@ export const SVGRoot = () => {
       }}
     >
       <rect width="200" height="200" viewBox="0 0 200 200" fill="#eee" />
+      <SVGShapes />
       <SVGDots />
     </svg>
   );
 };
+
+// SVGRoot -> SVGDots -> SVGShape

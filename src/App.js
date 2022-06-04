@@ -23,6 +23,8 @@ import { increment } from "./components/CounterSlice";
 import Form from "./components/useRef/Form";
 import ComponentApp from "./components/useEffects/UserApp";
 import JotaiAtom from "./components/Jotai/JotaiCounter";
+import LayoutComponent from "./components/CustomHook/LayoutComponent";
+import LayoutComponentTwo from "./components/CustomHook/LayoutComponentTwo";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -134,6 +136,14 @@ function App() {
       <br />
 
       <JotaiAtom />
+
+      <br />
+
+      <LayoutComponent />
+
+      <LayoutComponentTwo />
+
+      <br />
     </div>
   );
 }
